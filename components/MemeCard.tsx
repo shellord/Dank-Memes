@@ -11,42 +11,19 @@ const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
 const MemeCard = (props: Props) => {
-  const [isTitleLoaded, setisTitleLoaded] = useState<boolean>(false)
   const [isImageLoaded, setisImageLoaded] = useState<boolean>(false)
-
-  useEffect(() => {
-    setisTitleLoaded(false)
-    setisImageLoaded(false)
-    props.title != '' ? setisTitleLoaded(true) : setisTitleLoaded(false)
-  }, [props])
 
   return (
     <View style={styles.container}>
-      <ShimmerPlaceholder
-        visible={isImageLoaded}
-        width={windowWidth / 1.1}
-        height={windowHeight / 1.1}
-      >
-        <View style={styles.imageContainer}>
-          {props.url ? (
-            <Image
-              source={{ uri: props.url }}
-              style={styles.memeImage}
-              onLoad={() => setisImageLoaded(true)}
-            />
-          ) : null}
-        </View>
-      </ShimmerPlaceholder>
-
-      {/* <ShimmerPlaceholder
-        visible={isTitleLoaded}
-        width={windowWidth / 1.1}
-        height={windowHeight - windowHeight / 1.3}
-      >
-        <View style={styles.titleContainer}>
-          <Text style={styles.memeTitle}>{props.title}</Text>
-        </View>
-      </ShimmerPlaceholder> */}
+      <View style={styles.imageContainer}>
+        {props.url ? (
+          <Image
+            source={{ uri: props.url }}
+            style={styles.memeImage}
+            onLoad={() => setisImageLoaded(true)}
+          />
+        ) : null}
+      </View>
     </View>
   )
 }
@@ -79,6 +56,6 @@ const styles = StyleSheet.create({
   },
   memeImage: {
     flex: 1,
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
   },
 })

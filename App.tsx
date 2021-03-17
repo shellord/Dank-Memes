@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from './screens/Home'
 
-LogBox.ignoreAllLogs()
+// LogBox.ignoreAllLogs()
 
 const Stack = createStackNavigator()
 
